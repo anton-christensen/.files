@@ -1,0 +1,19 @@
+#If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# don't put duplicate lines or lines starting with space in the history
+HISTCONTROL=ignoreboth
+# append to history, don't overwrite
+shopt -s histappend
+# history file settings
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+#check window size and perform update
+shopt -s checkwinsize
+
+# include subfiles
+source ~/.files/shell/path.sh
+source ~/.files/shell/alias.sh
+source ~/.files/shell/prompt.sh
+

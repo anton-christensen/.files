@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/home/anton/projects/storagemanager/.git'
+let g:netrw_dirhist_2='/usr/share/lightdm-webkit/themes/petrichor'
+let g:netrw_dirhist_3='/home/anton/.local/share/indicators/application'
+let g:netrw_dirhist_4='/home/anton/.config/openbox'
+let g:netrw_dirhist_5='/home/anton/.files/scripts'
+let g:netrw_dirhist_6='/home/anton/.config/dunst'
+let g:netrw_dirhist_7='/home/anton/projects/aalborgComputerService/docker'
