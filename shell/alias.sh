@@ -10,3 +10,5 @@ alias netlist='netstat -tulpn'
 alias gf='git fetch --all'
 alias gs='git status'
 alias gp='git pull'
+
+alias spotify='spotify --force-device-scale-factor=2'
