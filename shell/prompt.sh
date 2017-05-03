@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export GITAWAREPROMPT=~/.files/git-aware-prompt
+export GITAWAREPROMPT=~/.files/scripts/git-aware-prompt
 source "${GITAWAREPROMPT}/main.sh"
 
 # with uname -n
