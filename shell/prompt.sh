@@ -1,4 +1,4 @@
-export PATH=$PATH:/home/anton/.files/scripts
+#!/bin/bash
 
 export GITAWAREPROMPT=~/.files/git-aware-prompt
 source "${GITAWAREPROMPT}/main.sh"
@@ -9,10 +9,4 @@ source "${GITAWAREPROMPT}/main.sh"
 #without uname -n
 export PS1="\[\033[01;34m\]\w\[\033[00m\] \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
 
-alias sshaau='ssh achri15@student.aau.dk@p3'
-alias dont='dotnet'
 
-alias netlist='netstat -tulpn'
-alias gf='git fetch --all'
-alias gs='git status'
-alias gp='git pull'
