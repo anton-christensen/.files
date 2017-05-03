@@ -1,6 +1,7 @@
 sh ~/.fehbg &
 compton --config ~/.files/config/compton/compton.conf &
-~/.files/apps/setlayout/setlayout 0 3 3 0 &
+obsetlayout 0 3 3 0 &
 ~/.files/scripts/_dbus_monitor_nm &
 ~/.files/scripts/lemonbar/lemonbar-start.sh &
+albert &
 numlockx &
