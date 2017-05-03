@@ -1,0 +1,1 @@
+{ listWifi | awk '$0="^ca(1,echo test)"$0"^ca()"'; cat; } | dzen2 -h 24 -y 8 -w 200 -x -380 -ta l -l 10 -m -tw 1 -e 'onstart=uncollapse'

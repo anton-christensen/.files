@@ -1,0 +1,6 @@
+stty -F $1 -raw
+while IFS='' read -r line || [[ -n "$line" ]]; do
+  num=$(echo -e "${line}" | tr -d '[:space:]')
+  pactl set-sink-volume 1 ${num}%
+  notify-send "Volume" -h int:value:${num} -h string:synchronous:volume
+done < "$1"

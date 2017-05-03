@@ -1,0 +1,34 @@
+#!/bin/bash
+MONS=$(xrandr | grep -o ".* connected" | grep -o ".* ")
+FIRST=$(echo "$MONS" | head -n1)
+LAST=$FIRST
+MONS=$(echo "$MONS" | tail -n+2)
+CMD="xrandr --output $FIRST --auto"
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+AFTERSCRIPT="$DIR/afterMonChange"
+CONFIGFILE="/home/anton/.monConfiguration"
+
+if [ ! -f $CONFIGFILE ]; then
+  echo "--right-of" > $CONFIGFILE
+fi
+
+CONF=$(cat $CONFIGFILE)
+if [ "$CONF" = "--same-as" ]; then
+  notify-send "Monitor mode: Duplicated"
+  echo "--right-of" > $CONFIGFILE
+else
+  notify-send "Monitor mode: Extended"
+  echo "--same-as" > $CONFIGFILE
+fi
+
+echo "$CONF"
+
+for m in $MONS
+do
+  CMD="$CMD --output $m --auto $CONF $LAST"
+  LAST="$m"
+done
+
+$CMD
+$AFTER
+

@@ -1,0 +1,8 @@
+#!/usr/bin/python
+import dbus
+bus = dbus.SessionBus()
+proxy = bus.get_object('org.mpris.MediaPlayer2.spotify','/org/mpris/MediaPlayer2')
+properties_manager = dbus.Interface(proxy, 'org.freedesktop.DBus.Properties')
+# properties_manager.Set('org.mpris.MediaPlayer2.Player', 'Volume', 100.0)
+metadata = properties_manager.Get('org.mpris.MediaPlayer2.Player', 'Metadata')
+print(', '.join(str(x) for x in metadata['xesam:artist']));

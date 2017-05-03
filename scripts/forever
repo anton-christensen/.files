@@ -1,0 +1,4 @@
+#!/bin/bash
+while true; do
+until ${@:1}; do sleep 1; done;
+done

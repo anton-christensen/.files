@@ -1,0 +1,2 @@
+#!/bin/bash
+scrot -s /tmp/scrot.png && xclip -selection clipboard -in -t image/png /tmp/scrot.png

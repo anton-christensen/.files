@@ -1,0 +1,20 @@
+#!/bin/bash
+_dbmon_nm_active_=Offline
+
+# Get script path
+SCRIPTPATH="/home/anton/.files/scripts"
+#pushd `dirname $0` > /dev/null
+#SCRIPTPATH=`pwd -P`
+#popd > /dev/null
+
+# Monitor the dbus and write var file accordingly
+dbus-monitor --system "type='signal',interface='org.freedesktop.NetworkManager',member='PropertiesChanged'" | 
+while read -r line 
+do
+  _dbmon_nm_active_=$(nmcli connection show --active | grep wlp7s0 | awk '{print $1 "\t"}')
+  if [ $(echo $_dbmon_nm_active_ | wc -m) -eq 1 ]
+    then
+    _dbmon_nm_active_="Offline"
+  fi
+  echo "$_dbmon_nm_active_" > $SCRIPTPATH/.dbmon_nm_var_active_connection
+done
