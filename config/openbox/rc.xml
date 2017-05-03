@@ -270,7 +270,7 @@
     </keybind>
     <keybind key="W-l">
       <action name="Execute">
-        <command>~/.files/lock/lock.sh ~/.files/lock/icon.png</command>
+        <command>~/.files/scripts/lock/lock.sh ~/.files/scripts/lock/icon.png</command>
       </action>
     </keybind>
     <keybind key="Print">
