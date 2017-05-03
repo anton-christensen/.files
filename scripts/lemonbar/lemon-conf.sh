@@ -37,7 +37,8 @@ WindowTitle() {
 	echo -n "$TITLE"
 }
 Volume() {
-  VOL=$(pulseaudio-ctl full-status | cut -d" " -f1)
+  VOL=$(/home/anton/.files/scripts/vol-level)%
+  # VOL=$(pulseaudio-ctl full-status | cut -d" " -f1)
   echo -en "\uf028 $VOL"
 }
 Wifi() {

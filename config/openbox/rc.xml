@@ -235,17 +235,20 @@
     </keybind>
     <keybind key="XF86AudioRaiseVolume">
       <action name="Execute">
-        <execute>pulseaudio-ctl up</execute>
+	<!-- <execute>pulseaudio-ctl up</execute> -->
+	<execute>amixer sset Master 5%+ ; notify-send 'Volume:' -h int:value:$(/home/anton/.files/scripts/vol-level)</execute>
       </action>
     </keybind>
     <keybind key="XF86AudioLowerVolume">
       <action name="Execute">
-        <execute>pulseaudio-ctl down</execute>
+	<!-- <execute>pulseaudio-ctl down</execute> -->
+	<execute>amixer sset Master 5%- ; notify-send 'Volume:' -h int:value:$(/home/anton/.files/scripts/vol-level)</execute>
       </action>
     </keybind>
     <keybind key="XF86AudioMute">
       <action name="Execute">
-        <execute>pulseaudio-ctl mute</execute>
+	<!-- <execute>pulseaudio-ctl mute</execute> -->
+        <execute>amixer sset Master toggle</execute>
       </action>
     </keybind>
     <keybind key="XF86AudioPlay">
