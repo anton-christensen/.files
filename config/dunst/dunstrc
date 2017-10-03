@@ -1,5 +1,5 @@
 [global]
-    font = Monospace 8
+    font = Inconsolata 10
     
     # Allow a small subset of html markup:
     #   <b>bold</b>
@@ -64,7 +64,7 @@
     # the top and down respectevly.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "0-64+128"
+    geometry = "0-32+32"
     # geometry = "300x5+32+16"
 
     # Shrink window if it's smaller than the width.  Will be ignored if
@@ -150,7 +150,7 @@
     max_icon_size = 128
 
 [frame]
-    width = 4
+    width = 8
     color = "#70838c"
 
 [shortcuts]

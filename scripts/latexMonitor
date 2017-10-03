@@ -1,0 +1,2 @@
+#!/bin/bash
+onchange $1 "pdflatex -file-line-error -halt-on-error -interaction=nonstopmode $1"

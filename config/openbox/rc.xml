@@ -42,7 +42,7 @@
                   'Active' - where the active window is -->
   </placement>
   <theme>
-    <name>CustomNightmare</name>
+    <name>Custom</name>
     <titleLayout>L</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
@@ -153,7 +153,7 @@
      Many programs reserve space automatically, but you can use this in other
      cases. -->
   <margins>
-    <top>64</top>
+    <top>0</top>
     <bottom>0</bottom>
     <left>0</left>
     <right>0</right>
@@ -225,45 +225,50 @@
     </keybind>
     <keybind key="XF86MonBrightnessUp">
       <action name="Execute">
-        <command>sh -c "xbacklight +10 ; notify-send 'Brightness:' -h int:value:$(xbacklight)"</command>
+	      <command>sh -c "/home/anton/.files/scripts/backlightIncrease ; notify-send 'Brightness:' -h int:value:$(/home/anton/.files/scripts/backlightGet)"</command>
+	<!-- <command>sh -c "xbacklight +10 ; notify-send 'Brightness:' -h int:value:$(xbacklight)"</command> -->
       </action>
     </keybind>
     <keybind key="XF86MonBrightnessDown">
       <action name="Execute">
-        <command>sh -c "xbacklight -10 ; notify-send 'Brightness:' -h int:value:$(xbacklight)"</command>
+	      <command>sh -c "/home/anton/.files/scripts/backlightDecrease ; notify-send 'Brightness:' -h int:value:$(/home/anton/.files/scripts/backlightGet)"</command>
+	<!-- <command>sh -c "xbacklight -10 ; notify-send 'Brightness:' -h int:value:$(xbacklight)"</command> -->
       </action>
     </keybind>
     <keybind key="XF86AudioRaiseVolume">
       <action name="Execute">
-	<!-- <execute>pulseaudio-ctl up</execute> -->
-	<execute>sh -c "amixer sset Master 5%+ ; notify-send 'Volume:' -h int:value:$(/home/anton/.files/scripts/vol-level)"</execute>
+        <!-- <execute>pulseaudio-ctl up</execute> -->
+        <execute>sh -c "amixer sset Master 5%+ ; notify-send 'Volume:' -h int:value:$(/home/anton/.files/scripts/vol-level)"</execute>
       </action>
     </keybind>
     <keybind key="XF86AudioLowerVolume">
       <action name="Execute">
-	<!-- <execute>pulseaudio-ctl down</execute> -->
-	<execute>sh -c "amixer sset Master 5%- ; notify-send 'Volume:' -h int:value:$(/home/anton/.files/scripts/vol-level)"</execute>
+        <!-- <execute>pulseaudio-ctl down</execute> -->
+        <execute>sh -c "amixer sset Master 5%- ; notify-send 'Volume:' -h int:value:$(/home/anton/.files/scripts/vol-level)"</execute>
       </action>
     </keybind>
     <keybind key="XF86AudioMute">
       <action name="Execute">
-	<!-- <execute>pulseaudio-ctl mute</execute> -->
+        <!-- <execute>pulseaudio-ctl mute</execute> -->
         <execute>amixer sset Master toggle</execute>
       </action>
     </keybind>
     <keybind key="XF86AudioPlay">
       <action name="Execute">
-        <execute>/home/anton/.files/scripts/play-pause-spotify</execute>
+        <execute>mpc toggle</execute>
+        <!--<execute>/home/anton/.files/scripts/play-pause-spotify</execute>-->
       </action>
     </keybind>
     <keybind key="XF86AudioNext">
       <action name="Execute">
-        <execute>/home/anton/.files/scripts/play-next-spotify</execute>
+        <execute>mpc next</execute>
+        <!--<execute>/home/anton/.files/scripts/play-next-spotify</execute>-->
       </action>
     </keybind>
     <keybind key="XF86AudioPrev">
       <action name="Execute">
-        <execute>/home/anton/.files/scripts/play-prev-spotify</execute>
+        <execute>mpc prev</execute>
+        <!--<execute>/home/anton/.files/scripts/play-prev-spotify</execute>-->
       </action>
     </keybind>
     <keybind key="XF86Display">
@@ -284,6 +289,11 @@
     <keybind key="C-S-Print">
       <action name="Execute">
         <command>/home/anton/.files/scripts/screenshotArea</command>
+      </action>
+    </keybind>
+    <keybind key="C-A-n">
+      <action name="Execute">
+        <command>networkmanager_dmenu</command>
       </action>
     </keybind>
     <keybind key="C-A-t">
@@ -475,12 +485,12 @@
         <action name="Unmaximize"/>
         <action name="Move"/>
       </mousebind>
-      <mousebind button="C-Left" action="Press">
+      <mousebind button="W-Left" action="Press">
         <action name="Focus"/>
         <action name="Raise"/>
         <action name="Unshade"/>
       </mousebind>
-      <mousebind button="C-Left" action="Drag">
+      <mousebind button="W-Left" action="Drag">
         <action name="Resize"/>
       </mousebind>
       <!--

@@ -1,0 +1,3 @@
+#!/bin/bash
+while inotifywait -e close_write $1; do $2; done
+

@@ -11,22 +11,26 @@ Xcursor.theme: Breeze
 
 
 ! Terminal font
-URxvt.font: xft:Inconsolata:style=Regular:size=11
+URxvt.font: xft:Inconsolata:style=Regular:size=10
 
 ! Disable scrollbar
 URxvt.scrollBar: false
 
 ! Set terminal padding
-URxvt.internalBorder: 12
+URxvt.internalBorder: 64
 
 ! Enables copy/paste with Ctrl-Shift-C/V
 URxvt.iso14755: false
 URxvt.iso14755_52: false
-URxvt.perl-ext-common: default,clipboard
-URxvt.keysym.Shift-Control-C: perl:clipboard:copy
-URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+URxvt.perl-ext-common: default,clipboard,resize-font,fullscreen
+! URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+! URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 
+URxvt.keysym.S-C-c: perl:clipboard:copy
+URxvt.keysym.S-C-v: perl:clipboard:paste
+URxvt.keysym.F11:   perl:fullscreen:switch
 
+URxvt.saveLines:    20000
 
 !!!!!!!!!!!!!! DZen !!!!!!!!!!!!!!!!
 dzen2.font: xft:Inconsolata:style=Regular:size=8
