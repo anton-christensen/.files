@@ -1,0 +1,9 @@
+#!/usr/bin/bash
+
+# productURL = https://www.arrow.com/en/products/74hc125d-bj/toshiba 
+
+# Get pdf viewer html url
+# pdfViewerURL = curl $productURL | grep data-end-point=\"/datasheets/viewer | head -n 1 | sed -rn 's/.*datasheetId=([0-9A-Za-z]*).*/https:\/\/www\.arrow\.com\/datasheets\/viewer\?datasheetId\=\1/p'
+
+# Get absolute pdf url from pdf viewer html
+# pdfURL = curl $pdfViewerURL | grep data-datasheet-download-url= | sed -rn 's/.*"([^"]*)"/\1/p' 

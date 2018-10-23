@@ -1,3 +1,35 @@
 #!/bin/bash
-while inotifywait -e close_write $1; do $2; done
+echo "Monitoring files:"
+
+monitored_files=""
+for f in "$@"
+do
+    if [ ! -f "$1" ] ; then
+        break
+    fi
+    echo $1
+    monitored_files="$monitored_files $f"
+    shift
+done
+
+echo ""
+
+echo "and running commands:"
+for c in "$@"
+do
+    echo $c
+done
+
+echo ""
+
+inotifywait -m -e close_write $monitored_files | 
+while read -r filename event
+# while inotifywait -e close_write $monitored_files
+do
+
+    for cmd in "$@"
+    do
+        $cmd
+    done
+done
 

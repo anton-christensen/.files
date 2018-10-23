@@ -12,8 +12,15 @@ HISTFILESIZE=2000
 #check window size and perform update
 shopt -s checkwinsize
 
+. /home/anton/.files/scripts/z.sh
+
 # include subfiles
 source ~/.files/shell/path.sh
 source ~/.files/shell/alias.sh
 source ~/.files/shell/prompt.sh
 
+export PATH=/tmp/ocrocis/bin:$PATH
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

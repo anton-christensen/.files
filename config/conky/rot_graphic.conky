@@ -1,5 +1,6 @@
 conky.config = {
-  update_interval=0.03,
+  _update_interval=0.03,
+  update_interval=0.075,
   background=false,
   text_buffer_size=2048,
   double_buffer=true,
@@ -23,7 +24,7 @@ conky.config = {
   gap_x = 0,
   gap_y = 0,
   default_color = '#494b5a',
-  lua_load = '~/.conky/rot_graphic.conky.lua',
+  lua_load = '~/.files/config/conky/rot_graphic.conky.lua',
   lua_draw_hook_pre = 'conky_main'
 };
 

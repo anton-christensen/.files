@@ -1,0 +1,2 @@
+echo "nameserver 8.8.8.8" > /tmp/resolv.conf 
+sudo cp /tmp/resolv.conf /etc/resolv.conf

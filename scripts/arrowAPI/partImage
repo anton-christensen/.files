@@ -1,0 +1,5 @@
+#!/usr/bin/bash
+
+partURL="https://www.arrow.com/en/products/74hc125d-bj/toshiba"
+imageURL=$(curl $partURL | sed -rn 's/.*Product-Summary-Image.* src="([^"]*)".*/\1/p')
+echo $imageURL

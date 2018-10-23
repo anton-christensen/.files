@@ -1,0 +1,150 @@
+#!/usr/bin/python3
+import webbrowser
+import requests
+import urllib.parse
+import urllib.request
+import json
+import re
+import curses
+import tempfile
+import sys
+import _thread
+import getch
+
+def search(q):
+    r = requests.get('http://api.arrow.com/itemservice/v3/en/search/token?'
+        + 'login=asetek&'
+        + 'apikey=c07976afb97505a17c446f77b3bec23b1825e976cb5d96c6e8e494596ece832b&'
+        + urllib.parse.urlencode({
+            'search_token': q,
+            'login'       :'asetek',
+            'apikey'      :'c07976afb97505a17c446f77b3bec23b1825e976cb5d96c6e8e494596ece832b'
+        })
+    )
+    r = r.json()
+    r = r['itemserviceresult']['data'][0]['PartList']
+
+    parts = []
+    for p in r:
+        part = {
+            'partNum'       : p['partNum'],
+            'desc'          : p['desc'],
+            'partUrl'       : p['resources'][0]['uri'],
+            'hasDatasheet'  : p['hasDatasheet'],
+            'imgUrl'        : None,
+            'imgPath'       : None,
+            'datasheetUrl'  : None
+        }
+        _thread.start_new_thread(getPartExternalResources, (part, ))
+        parts.append(part)
+
+    return parts
+
+def getPartExternalResources(part):
+    part['imgUrl']  = getImageUrl(part['partUrl'])
+    part['imgPath'] = downloadImage(part['imgUrl'])
+    part['datasheetUrl'] = None if not part['hasDatasheet'] else getDatasheetUrl(part['partUrl'])
+
+
+def regexGetFrom(url, regex):
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)'}
+    req = urllib.request.Request(url, headers=headers)
+
+    with urllib.request.urlopen(req) as response:
+        html = response.readlines()
+        rx = re.compile(regex)
+        for l in html:
+            m = rx.match(l.decode())
+            if m != None:
+                return m
+
+def getImageUrl(productUrl):
+    m = regexGetFrom(productUrl, '.*Product-Summary-Image.* src="([^"]*)".*')
+    return 'http:'+m.group(1)    
+
+def getDatasheetUrl(productUrl):
+    m = regexGetFrom(productUrl, '.*datasheetId=([0-9A-Za-z]*).*')
+    viewerUrl = 'https://www.arrow.com/datasheets/viewer?datasheetId='+m.group(1)
+    
+    m = regexGetFrom(viewerUrl, '.*data-datasheet-download-url="([^"]*?)".*')
+    return m.group(1)
+           
+
+def openInBrowser(url):
+    if url is not None:
+        webbrowser.open(url)
+
+def downloadImage(url):
+    tmpfile = tempfile.NamedTemporaryFile(delete=False).name
+    opener = urllib.request.build_opener()
+    opener.addheaders = [('User-agent', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)')]
+    urllib.request.install_opener(opener)
+
+    try:
+        urllib.request.urlretrieve(url, tmpfile)
+    except Exception:
+        raise Exception(url)
+    return tmpfile
+
+def clearImage():
+    sys.stdout.write('\033]20;;1x1+1000+1000:op=keep-aspect\a')
+    sys.stdout.flush()
+
+def setImage(path):
+    if path is None:
+        clearImage()
+        return
+    sys.stdout.write('\033]20;{};20x20+90+10:op=keep-aspect\a'.format(path))
+
+def termClear():
+    sys.stdout.write('\033[2J')
+    sys.stdout.write('\033[H')
+    return
+def termFlush():
+    sys.stdout.flush();
+    return
+
+def termWrite(y=-1,x=-1, s="", attr=None):
+    print(s)
+
+def listMenu(parts, menuIndex):
+    termClear()
+    i = 0
+    for part in parts:
+        termWrite(i,0,
+            "{}[{}] {} - {} : {} ".format(
+                '!' if part['imgUrl'] is None else ' ',
+                ' ' if part['hasDatasheet'] == False else '.' if part['datasheetUrl'] is None else 'X', 
+                part['partNum'], 
+                part['desc'], 
+                part['partUrl']
+            ),
+            curses.A_REVERSE if i == menuIndex else curses.A_NORMAL
+        )
+        i += 1
+    setImage(parts[menuIndex]['imgPath'])
+    termFlush()
+
+def main():
+    running = True
+    menuIndex = 0
+    parts = search('74hc')
+    while(running):
+        key = getch.getch()
+        if key == 'q':
+            running = False
+        if key == 'A':
+            menuIndex = menuIndex-1 if menuIndex > 0 else menuIndex
+        if key == 'B':
+            menuIndex = menuIndex+1 if menuIndex < len(parts)-1 else menuIndex
+        if key == '\n': # Key ENTER was pressed
+            openInBrowser(parts[menuIndex]['datasheetUrl'])
+
+
+        listMenu(parts, menuIndex)
+        print(key)
+try:
+    main()
+except Exception:
+    clearImage()
+    raise

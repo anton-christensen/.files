@@ -7,4 +7,4 @@ obsetlayout 0 3 3 0 &
 albert &
 numlockx &
 # conky -c ~/.conky/simple.conky &
-conky -c ~/.conky/rot_graphic.conky &
+conky -c ~/.files/config/conky/rot_graphic.conky &

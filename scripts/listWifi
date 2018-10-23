@@ -1,1 +1,2 @@
-nmcli device wifi list | grep -oP '\*? *\K(.*)(?= Infra)'
+iwlist wlp2s0 scan | grep -oP 'SSID:"(.*)"'
+# nmcli device wifi list | grep -oP '\*? *\K(.*)(?= Infra)'

@@ -1,3 +1,4 @@
+!Xft.dpi: 96
 Xft.dpi: 192
 Xft.autohint: 0
 Xft.antialias: 1
@@ -22,13 +23,20 @@ URxvt.internalBorder: 64
 ! Enables copy/paste with Ctrl-Shift-C/V
 URxvt.iso14755: false
 URxvt.iso14755_52: false
-URxvt.perl-ext-common: default,clipboard,resize-font,fullscreen
+URxvt.perl-ext-common: default,resize-font,fullscreen
+! URxvt.perl-ext-common: default,clipboard,resize-font,fullscreen
 ! URxvt.keysym.Shift-Control-C: perl:clipboard:copy
 ! URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 
-URxvt.keysym.S-C-c: perl:clipboard:copy
-URxvt.keysym.S-C-v: perl:clipboard:paste
+! URxvt.keysym.S-C-c: perl:clipboard:copy
+! URxvt.keysym.S-C-v: perl:clipboard:paste
 URxvt.keysym.F11:   perl:fullscreen:switch
+
+URxvt.keysym.C-Up: \033[1;5A
+URxvt.keysym.C-Down: \033[1;5B
+URxvt.keysym.C-Right: \033[1;5C
+URxvt.keysym.C-Left: \033[1;5D
+
 
 URxvt.saveLines:    20000
 
