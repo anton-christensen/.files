@@ -64,7 +64,7 @@
     # the top and down respectevly.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "0-32+32"
+    geometry = "0x0-32+32"
     # geometry = "300x5+32+16"
 
     # Shrink window if it's smaller than the width.  Will be ignored if
@@ -146,7 +146,7 @@
     icon_position = left
 
     # Paths to default icons.
-    icon_folders = /usr/share/icons/Numix/scalable/status/:/usr/share/icons/Numix/scalable/devices/
+    icon_folders = /usr/share/icons/Numix/scalable/status/:/usr/share/icons/Numix/scalable/devices/:/usr/share/icons/Numix/96/status/
     max_icon_size = 128
 
 [frame]

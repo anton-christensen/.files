@@ -1,0 +1,4 @@
+#!/bin/bash
+while read x do
+done 
+

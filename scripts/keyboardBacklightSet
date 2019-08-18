@@ -1,0 +1,2 @@
+#!/bin/bash
+light -s sysfs/leds/dell::kbd_backlight -S $1

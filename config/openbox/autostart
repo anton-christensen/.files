@@ -1,10 +1,11 @@
-polybar primary -r &
+polybar primary -r &> /home/anton/.config/polybar/output.log &
 sh ~/.fehbg &
 compton --config ~/.files/config/compton/compton.conf &
 obsetlayout 0 3 3 0 &
 ~/.files/scripts/_dbus_monitor_nm &
-# ~/.files/scripts/lemonbar/lemonbar-start.sh &
 albert &
 numlockx &
-# conky -c ~/.conky/simple.conky &
-conky -c ~/.files/config/conky/rot_graphic.conky &
+# conky -c ~/.files/config/conky/rot_graphic.conky &
+
+# keymaps
+xmodmap ~/.xmodmap

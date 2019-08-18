@@ -1,0 +1,2 @@
+#!/bin/bash
+light -s sysfs/leds/input4::capslock -S $1

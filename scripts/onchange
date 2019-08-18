@@ -29,7 +29,7 @@ do
 
     for cmd in "$@"
     do
-        $cmd
+        bash -c "$cmd"
     done
 done
 

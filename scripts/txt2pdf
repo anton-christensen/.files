@@ -1,0 +1,2 @@
+#!/bin/bash
+enscript -B -C -p $1.ps $1 && ps2pdf $1.ps $1.pdf && rm $1.ps

@@ -1,4 +1,4 @@
-#If not running interactively, don't do anything
+# If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
 # don't put duplicate lines or lines starting with space in the history
@@ -9,18 +9,22 @@ shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
 
+
+. ~/.files/scripts/z.sh
+
 #check window size and perform update
 shopt -s checkwinsize
 
-. /home/anton/.files/scripts/z.sh
 
 # include subfiles
 source ~/.files/shell/path.sh
 source ~/.files/shell/alias.sh
 source ~/.files/shell/prompt.sh
 
-export PATH=/tmp/ocrocis/bin:$PATH
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# PlatformIO bash completion
+# eval "$(_PLATFORMIO_COMPLETE=source platformio)"
+# eval "$(_PIO_COMPLETE=source pio)"
